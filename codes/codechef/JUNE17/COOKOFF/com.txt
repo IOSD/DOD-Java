@@ -1,1 +1,63 @@
-FOLLOW ALL THE INSTRUCTIONS!!
+Soll. for  Ada and crayons from COOKOFF june 2017
+import java.io.*;
+import java.util.*;
+class solution{
+	public static void main(String args[]){
+	FastReader fr=new FastReader();
+	int t=fr.ni();while(t--!=0){
+	String s=fr.nl();int n=s.length();
+	int u=0,d=0;int i=-1;while(++i!=n){
+	if(s.charAt(i)=='U')continue;int j;
+	for( j=i;j<n;j++){if(s.charAt(j)=='U')break;}
+	u+=1;i=j-1;}
+	i=-1;while(++i!=n){
+	if(s.charAt(i)=='D')continue;int j;
+	for( j=i;j<n;j++){if(s.charAt(j)=='D')break;}
+	d+=1;i=j-1;}int ans;
+	if(u<d)ans=u;else ans=d;
+	System.out.println(ans);}}
+	static class FastReader
+    {
+        BufferedReader br;
+        StringTokenizer st;
+ 
+        public FastReader()
+        {
+            br = new BufferedReader(new
+                     InputStreamReader(System.in));
+        }
+ 
+        String next()
+        {
+            while (st == null || !st.hasMoreElements())
+            {
+                try
+                {
+                    st = new StringTokenizer(br.readLine());
+                }
+                catch (IOException  e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+ 
+        int ni()
+        {
+            return Integer.parseInt(next());
+        }
+        String nl()
+        {
+            String str = "";
+            try
+            {
+                str = br.readLine();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            return str;
+        }
+ }} 
