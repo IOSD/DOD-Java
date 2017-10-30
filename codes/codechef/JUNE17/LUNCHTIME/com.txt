@@ -1,1 +1,27 @@
-FOLLOW ALL THE INSTRUCTIONS!!
+//soll for TWO NUMBERS
+import java.util.Scanner;
+   class twonumbers {
+	public static void main(String[] args) {
+		
+	Scanner scan=new Scanner(System.in);
+ 
+	int t=scan.nextInt();
+	while(t>0){
+		t-=1;
+		long x=scan.nextLong();
+		long y=scan.nextLong();
+		long n=scan.nextLong();
+		if(n%2==1) {
+			x=x*2;
+		}
+		int sum;
+		if(x>=y)
+			sum=(int)(x/y);
+		else{
+			sum=(int)(y/x);
+		}
+		System.out.println(sum);
+	}
+	}
+ 
+}
