@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+//#define DEBUG
+//#ifdef DEBUG
+//code to debug
+//#endif
+//#undef DEBUG
+using namespace std;
+ 
+const int mod=(int)1e9+7,maxn=1000005,ln=17,maxm=5005;
+#define F(i,p,n) for(int i=p;i<n;i++)
+#define I(i,p,q) for(int i=p;i>=q;i--)
+#define forall(itr,x)	for( __typeof((x).begin()) itr=(x).begin(); itr!=(x).end(); itr++)
+#define Ss(x) scanf("%s",x)
+//#define S(x) scanf("%d",&x)
+#define Sl(x) scanf("%lld",&x)
+//#define getcx getchar_unlocked
+#define getcx getchar
+inline void S(int& n)
+{
+    n=0; int ch = getcx(); int sign = 1;
+    while(ch < '0' || ch > '9') { if(ch == '-') sign=-1; ch = getcx(); }
+    while(ch >= '0' && ch <= '9') { n = (n << 3) + (n << 1) + ch - '0', ch = getcx(); }
+    n = n * sign;
+}
+#define Ps(x) printf("%d  ",x)
+#define P(x) printf("%d\n",x)
+typedef long long int LL;
+#define modulo(x,y,z) (x+y)<0?x+y+z:((x+y>=z)?x+y-z:x+y)
+#define Debug(x) cout << #x << "=" << x << endl
+#define Debugarr(x,n) cout<<"array "<<#x<<":"<<endl; F(ij,0,n) cout<<ij<<". "<<x[ij]<<endl; cout<<endl
+#define Debugarr2(x,m,n) cout<<"array "<<#x<<":"<<endl; F(ij,0,m) {F(jk,0,n) cout<<x[ij][jk]<<" "; cout<<endl;} cout<<endl
+#define Debugset(x) cout<<"Set "<<#x<<":"<<endl; forall(iittrr,x) cout<<(*iittrr)<<endl; cout<<endl
+#define Debugmap(x) cout<<"Map "<<#x<<":"<<endl; forall(iittrr,x) cout<<"( "<<(iittrr->Fi)<<" , "<<(iittrr->Se)<<" )"<<endl; cout<<endl
+#define pii pair<int,int>
+#define Fi first
+#define Se second
+#define chk(x,n) (x[n>>5]&(1<<(n&31))) //unsigned int
+//#define set(x,n) (x[n>>5]|=(1<<(n&31)))//32 bit
+const int shift=30,etf=mod-1,LIM=(int)1e9;
+#define WHITE 0
+#define GREY 1
+#define BLACK 2
+ 
+const LL inf=(LL)1e18+1;
+ 
+const double PI=(double)3.141592653589793238,EPSILON=1e-10;
+ 
+int a[maxn];
+ 
+stack<int> smax,smin;
+ 
+LL dpmx1[maxn],dpmx2[maxn],dpmn[maxn];
+ 
+int main()
+{
+	int n;
+	S(n);
+	F(i,1,n+1)
+	{
+		S(a[i]);
+		while(!smax.empty()&&a[smax.top()]<=a[i])
+		{
+			smax.pop();
+		}
+		int index=0;
+		if(!smax.empty())
+			index=smax.top();
+		dpmx1[i]=((LL)a[i]*(i-index)+dpmx1[index])%mod;
+		dpmx2[i]=(dpmx2[i-1]+dpmx1[i])%mod;
+		smax.push(i);
+	}
+ 
+	LL ans=0;
+ 
+	I(i,n,1)
+	{
+		while(!smin.empty()&&a[smin.top()]>=a[i])
+		{
+			smin.pop();
+		}
+		int index=n+1;
+		if(!smin.empty())
+			index=smin.top();
+		dpmn[i]=((LL)a[i]*(index-i)+dpmn[index])%mod;
+		smin.push(i);
+		ans=(ans+dpmx2[i-1]*dpmn[i])%mod;
+	}
+	cout<<ans<<endl;
+	return 0;
+} 
