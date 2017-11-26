@@ -1,0 +1,22 @@
+#include <stdio.h>
+ 
+int main(void) {
+	int T,N,V1,V2;
+	float a,b;
+	scanf("%d",&T);
+	while(T)
+	{
+	   scanf("%d%d%d",&N,&V1,&V2);
+	   a=2*N;
+	   a=a/V2;
+	   b=1.4142*N;
+	   b=b/V1;
+	   if(a<=b)
+	   printf("Elevator");
+	   else
+	   printf("Stairs");
+	   printf("\n");
+	   T--;
+	}
+	return 0;
+} 
